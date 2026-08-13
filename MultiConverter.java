@@ -1,19 +1,18 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class MultiConverter {
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Mertic Converter");
-        frame.setLayout(new GridLayout(2, 1, 5, 5));
-        frame.setSize(440, 140);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+public class MultiConverter extends JFrame {
 
-        // Bold Font Definition
+    public MultiConverter() {
+        setTitle("Metric Converter");
+        setLayout(new GridLayout(2, 1, 5, 5));
+        setSize(440, 140);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
         Font boldFont = new Font("SansSerif", Font.BOLD, 12);
-
-        // Defined sizes to align component dimensions
-        Dimension textBoxSize = new Dimension(90, 25);     // Equal size for input & output text boxes
-        Dimension controlSize = new Dimension(130, 25);    // Equal size for modeBox & convertBtn
+        Dimension textBoxSize = new Dimension(90, 25);
+        Dimension controlSize = new Dimension(130, 25);
 
         // --- Row 1 Components ---
         JLabel inputLabel = new JLabel("Input :");
@@ -45,7 +44,7 @@ public class MultiConverter {
         convertBtn.setFont(boldFont);
         convertBtn.setPreferredSize(controlSize);
 
-        // Panels to hold each row
+        // Panels
         JPanel row1 = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
         row1.add(inputLabel);
         row1.add(input);
@@ -56,9 +55,8 @@ public class MultiConverter {
         row2.add(output);
         row2.add(convertBtn);
 
-        // Add rows to frame
-        frame.add(row1);
-        frame.add(row2);
+        add(row1);
+        add(row2);
 
         convertBtn.addActionListener(e -> {
             try {
@@ -87,7 +85,10 @@ public class MultiConverter {
             }
         });
 
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(MultiConverter::new);
     }
 }
