@@ -48,11 +48,13 @@ public class Basicprogram1 {
                 System.out.println("Vowels: " + vowels);
                 System.out.println("Consonants: " + consonants);
             }
-
             case 4 -> {
                 System.out.print("Enter a year: ");
                 int year = sc.nextInt();
                 boolean isLeap = false;
+
+                
+
                 if (year % 4 == 0) {
                     if (year % 100 == 0) {
                         isLeap = (year % 400 == 0);
