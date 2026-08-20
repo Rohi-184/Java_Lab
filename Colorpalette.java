@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class Colorplatte {
+public class Colorpalette {
 
     public static void main(String[] args) {
 
@@ -47,7 +47,7 @@ public class Colorplatte {
         frame.setLocation(100, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-
+        
         JPanel colors = new JPanel(new GridLayout(4, 4, 5, 5));
 
         Color[] list = {
