@@ -1,11 +1,12 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class Calculatorr extends JFrame {
+public class Calculator extends JFrame {
+    @SuppressWarnings("FieldMayBeFinal")
     private JTextField display;
     private boolean isResultShown = false;
 
-    public Calculatorr() {
+    public Calculator() {
         setTitle("Calculator");
         setSize(360, 450);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -100,13 +101,13 @@ public class Calculatorr extends JFrame {
                     return;
                 }
             }
-        } catch (Exception ex) {
+        } catch (NumberFormatException ex) {
             display.setText("Error");
             isResultShown = true;
         }
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Calculatorr().setVisible(true));
+        SwingUtilities.invokeLater(() -> new Calculator().setVisible(true));
     }
 }
