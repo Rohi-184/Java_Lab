@@ -1,7 +1,8 @@
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.Scanner;
 
-public class Exceptionhandle {
+public class Exercise_03 {
 
     public static void main(String args[]) {
         try (Scanner s = new Scanner(System.in)) {

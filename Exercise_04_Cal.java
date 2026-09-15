@@ -1,12 +1,21 @@
-import java.awt.*;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
 
-public class Calculator extends JFrame {
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
+public class Exercise_04_Cal extends JFrame {
     @SuppressWarnings("FieldMayBeFinal")
     private JTextField display;
     private boolean isResultShown = false;
 
-    public Calculator() {
+    public Exercise_04_Cal() {
         setTitle("Calculator");
         setSize(360, 450);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -108,6 +117,6 @@ public class Calculator extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Calculator().setVisible(true));
+        SwingUtilities.invokeLater(() -> new Exercise_04_Cal().setVisible(true));
     }
 }

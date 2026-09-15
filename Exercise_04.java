@@ -1,9 +1,19 @@
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 
-public class MultiConverter extends JFrame {
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
-    public MultiConverter() {
+public class Exercise_04 extends JFrame {
+
+    public Exercise_04() {
         setTitle("Metric Converter");
         setLayout(new GridLayout(2, 1, 5, 5));
         setSize(440, 140);
@@ -89,6 +99,6 @@ public class MultiConverter extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(MultiConverter::new);
+        SwingUtilities.invokeLater(Exercise_04::new);
     }
 }

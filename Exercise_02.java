@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Basicprogram2 {
+public class Exercise_02 {
     @SuppressWarnings("resource")
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);

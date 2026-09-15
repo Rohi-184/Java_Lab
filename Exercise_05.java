@@ -1,9 +1,26 @@
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
-public class StudentRegistrationForm extends JFrame {
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
-    public StudentRegistrationForm() {
+public class Exercise_05 extends JFrame {
+
+    public Exercise_05() {
         setTitle("Student Registration Form");
         setSize(450, 450);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -58,6 +75,6 @@ public class StudentRegistrationForm extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(StudentRegistrationForm::new);
+        SwingUtilities.invokeLater(Exercise_05::new);
     }
 }
