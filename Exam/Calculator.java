@@ -1,122 +1,60 @@
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
+import java.awt.*;
 
-public class Exercise_04_Cal extends JFrame {
-    @SuppressWarnings("FieldMayBeFinal")
-    private JTextField display;
-    private boolean isResultShown = false;
-
-    public Exercise_04_Cal() {
-        setTitle("Calculator");
-        setSize(360, 450);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-
-        display = new JTextField();
-        display.setFont(new Font("SansSerif", Font.BOLD, 26));
-        display.setEditable(false);
-        display.setHorizontalAlignment(JTextField.RIGHT);
-        display.setPreferredSize(new Dimension(360, 60));
-
-        JPanel panel = new JPanel(new GridLayout(4, 4, 8, 8));
-        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-        String[] buttons = {
-            "7", "8", "9", "/",
-            "4", "5", "6", "*",
-            "1", "2", "3", "-",
-            "0", "C", "=", "+"
-        };
-
-        Font buttonFont = new Font("SansSerif", Font.BOLD, 18);
-        for (String text : buttons) {
-            JButton button = new JButton(text);
-            button.setFont(buttonFont);
-            button.addActionListener(e -> handleButtonClick(e.getActionCommand()));
-            panel.add(button);
-        }
-
-        add(display, BorderLayout.NORTH);
-        add(panel, BorderLayout.CENTER);
-    }
-
-    private void handleButtonClick(String command) {
-        if (command.equals("C")) {
-            display.setText("");
-            return;
-        }
-
-        if (command.equals("=")) {
-            calculate();
-            return;
-        }
-
-        // Clear screen if entering a new digit right after getting a result
-        if (isResultShown && "0123456789".contains(command)) {
-            display.setText("");
-        }
-        isResultShown = false;
-
-        String text = display.getText();
-
-        // Replace operator if two operators are pressed in a row
-        if (!text.isEmpty() && "+-*/".contains(command)) {
-            char lastChar = text.charAt(text.length() - 1);
-            if ("+-*/".indexOf(lastChar) != -1) {
-                text = text.substring(0, text.length() - 1);
-            }
-        }
-
-        display.setText(text + command);
-    }
-
-    private void calculate() {
-        try {
-            String expr = display.getText();
-
-            // Find which operator was used (+, -, *, /)
-            for (char op : new char[]{'+', '-', '*', '/'}) {
-                int idx = expr.indexOf(op);
-                if (idx > 0) { // Ensures operator exists and isn't the first character
-                    double n1 = Double.parseDouble(expr.substring(0, idx));
-                    double n2 = Double.parseDouble(expr.substring(idx + 1));
-
-                    double result = switch (op) {
-                        case '+' -> n1 + n2;
-                        case '-' -> n1 - n2;
-                        case '*' -> n1 * n2;
-                        case '/' -> n2 != 0 ? n1 / n2 : Double.NaN;
-                        default  -> 0;
-                    };
-
-                    if (Double.isNaN(result)) {
-                        display.setText("Error");
-                    } else {
-                        // Format output to remove trailing zeros
-                        display.setText(String.format("%.6f", result)
-                                              .replaceAll("0+$", "")
-                                              .replaceAll("\\.$", ""));
-                    }
-                    isResultShown = true;
-                    return;
-                }
-            }
-        } catch (NumberFormatException ex) {
-            display.setText("Error");
-            isResultShown = true;
-        }
-    }
-
+public class Calculator {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Exercise_04_Cal().setVisible(true));
+
+        JFrame f = new JFrame("Calculator");
+
+        JTextField t1 = new JTextField();
+        JTextField t2 = new JTextField();
+        JTextField result = new JTextField();
+
+        JButton b1 = new JButton("+");
+        JButton b2 = new JButton("-");
+        JButton b3 = new JButton("*");
+        JButton b4 = new JButton("/");
+
+        JPanel p = new JPanel();
+        p.setLayout(new GridLayout(2, 2, 5, 5));
+
+        p.add(b1);
+        p.add(b2);
+        p.add(b3);
+        p.add(b4);
+
+        b1.addActionListener(e -> result.setText(
+            "" + (Integer.parseInt(t1.getText()) + Integer.parseInt(t2.getText()))
+        ));
+
+        b2.addActionListener(e -> result.setText(
+            "" + (Integer.parseInt(t1.getText()) - Integer.parseInt(t2.getText()))
+        ));
+
+        b3.addActionListener(e -> result.setText(
+            "" + (Integer.parseInt(t1.getText()) * Integer.parseInt(t2.getText()))
+        ));
+
+        b4.addActionListener(e -> {
+            int a = Integer.parseInt(t1.getText());
+            int b = Integer.parseInt(t2.getText());
+
+            if (b != 0)
+                result.setText("" + (a / b));
+            else
+                result.setText("Cannot divide by zero");
+        });
+
+        f.setLayout(new GridLayout(4, 1, 5, 5));
+
+        f.add(t1);
+        f.add(t2);
+        f.add(p);
+        f.add(result);
+
+        f.setSize(300, 300);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);
     }
 }
